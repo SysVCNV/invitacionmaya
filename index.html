@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Primer Cumpleaños - Abeja Maya!</title>
+    <style>
+        /* Variables para colores - Temática Abeja Maya */
+        :root {
+            --color-primary: #F9D423;
+            /* Amarillo abeja */
+            --color-secondary: #F5A623;
+            /* Naranja miel */
+            --color-accent: #000000;
+            /* Negro para las rayas */
+            --color-accent-2: #87BF34;
+            /* Verde prado */
+            --color-text: #4a4a4a;
+            --color-light: #ffffff;
+            --color-flower: #FF93C9;
+            /* Rosa flor */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--color-light);
+            color: var(--color-text);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header con animación de abejas volando */
+        header {
+            background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+            text-align: center;
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 10px solid var(--color-accent);
+            height: 350px;
+        }
+
+        .bee-container {
+            position: absolute;
+            width: 40px;
+            height: 30px;
+            animation: fly 15s linear infinite;
+            z-index: 5;
+        }
+
+        .bee-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .bee::before,
+        .bee::after {
+            content: "";
+            position: absolute;
+            background-color: var(--color-accent);
+            height: 10px;
+            left: 10%;
+            right: 10%;
+            border-radius: 5px;
+        }
+
+        .bee::before {
+            top: 5px;
+        }
+
+        .bee::after {
+            bottom: 5px;
+        }
+
+        .bee-wing {
+            position: absolute;
+            width: 20px;
+            height: 15px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            top: -5px;
+            right: 5px;
+            transform-origin: center bottom;
+            animation: flap 0.2s linear infinite alternate;
+        }
+
+        @keyframes fly {
+            0% {
+                left: -50px;
+                top: calc(10% + (80% * var(--bee-y, 0.5)));
+            }
+
+            25% {
+                top: calc(5% + (90% * var(--bee-y, 0.5)) * 0.7);
+            }
+
+            50% {
+                top: calc(15% + (70% * var(--bee-y, 0.5)) * 1.2);
+            }
+
+            75% {
+                top: calc(10% + (80% * var(--bee-y, 0.5)) * 0.8);
+            }
+
+            100% {
+                left: 100%;
+                top: calc(10% + (80% * var(--bee-y, 0.5)));
+            }
+        }
+
+        @keyframes flap {
+            0% {
+                transform: rotate(-20deg);
+            }
+
+            100% {
+                transform: rotate(20deg);
+            }
+        }
+
+        .flower {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: var(--color-flower);
+            border-radius: 50%;
+            bottom: 20px;
+            z-index: 0;
+        }
+
+        .flower::before {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: var(--color-flower);
+            border-radius: 50%;
+            top: -10px;
+            left: -10px;
+        }
+
+        .flower::after {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: var(--color-flower);
+            border-radius: 50%;
+            top: -10px;
+            right: -10px;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            margin-top: 50px;
+        }
+
+        .header-img-container {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 120px;
+            background-color: var(--color-light);
+            border-radius: 50%;
+            border: 5px solid var(--color-accent);
+            z-index: 3;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: var(--color-light);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--color-light);
+            margin-bottom: 20px;
+        }
+
+        /* Sección principal con imagen única */
+        .main-content {
+            padding: 80px 0 60px;
+            text-align: center;
+            background-color: #f9f9f9;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+                url('/api/placeholder/20/20');
+            position: relative;
+        }
+
+        .main-content h2 {
+            font-size: 2.5rem;
+            color: var(--color-secondary);
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .main-image-container {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            position: relative;
+            border: 15px solid var(--color-primary);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .main-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .bee-decoration {
+            position: absolute;
+            width: 60px;
+            height: 40px;
+            background-color: var(--color-primary);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .bee-decoration::before,
+        .bee-decoration::after {
+            content: "";
+            position: absolute;
+            background-color: var(--color-accent);
+            height: 12px;
+            left: 15%;
+            right: 15%;
+            border-radius: 6px;
+        }
+
+        .bee-decoration::before {
+            top: 7px;
+        }
+
+        .bee-decoration::after {
+            bottom: 7px;
+        }
+
+        .bee-decoration.left {
+            top: 80px;
+            left: 5%;
+        }
+
+        .bee-decoration.right {
+            bottom: 80px;
+            right: 5%;
+        }
+
+        /* Contador regresivo - temática abeja */
+        .countdown {
+            padding: 60px 0;
+            background-color: var(--color-secondary);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown h2 {
+            font-size: 2.5rem;
+            color: var(--color-light);
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .honeycomb-background {
+            position: relative;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .timer-box {
+            background-color: var(--color-primary);
+            border-radius: 10px;
+            padding: 20px;
+            min-width: 100px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timer-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background-color: var(--color-accent);
+            opacity: 0.7;
+        }
+
+        .timer-box .number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--color-light);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .timer-box .label {
+            font-size: 1.2rem;
+            color: var(--color-light);
+            font-weight: bold;
+        }
+
+        .bee-flying {
+            position: absolute;
+            width: 60px;
+            height: 40px;
+            background-color: var(--color-primary);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .bee-flying::before,
+        .bee-flying::after {
+            content: "";
+            position: absolute;
+            background-color: var(--color-accent);
+            height: 12px;
+            left: 10%;
+            right: 10%;
+            border-radius: 6px;
+        }
+
+        .bee-flying::before {
+            top: 8px;
+        }
+
+        .bee-flying::after {
+            bottom: 8px;
+        }
+
+        .bee-flying.left {
+            top: 30%;
+            left: 10%;
+            animation: flyBee 15s linear infinite;
+        }
+
+        .bee-flying.right {
+            bottom: 30%;
+            right: 10%;
+            animation: flyBee 12s linear infinite reverse;
+        }
+
+        @keyframes flyBee {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            25% {
+                transform: translate(20px, -30px) rotate(10deg);
+            }
+
+            50% {
+                transform: translate(40px, 0) rotate(0deg);
+            }
+
+            75% {
+                transform: translate(20px, 30px) rotate(-10deg);
+            }
+
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+        }
+
+        /* Detalles del evento - hexágonos de panal */
+        .details {
+            padding: 60px 0;
+            text-align: center;
+            background-color: var(--color-accent-2);
+            background-image: url('/api/placeholder/400/400');
+            background-size: 200px;
+            background-blend-mode: soft-light;
+            position: relative;
+        }
+
+        .details::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.85);
+        }
+
+        .details .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .details h2 {
+            font-size: 2.5rem;
+            color: var(--color-secondary);
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .honeycomb-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .detail-card {
+            width: 300px;
+            height: 260px;
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .hexagon-shape {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: var(--color-primary);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            z-index: 1;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 2;
+            padding: 30px 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .detail-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 15px;
+            object-fit: contain;
+        }
+
+        .detail-card h3 {
+            font-size: 1.5rem;
+            color: var(--color-accent);
+            margin-bottom: 15px;
+        }
+
+        .detail-card p {
+            font-size: 1.2rem;
+            color: var(--color-text);
+            line-height: 1.6;
+            margin-bottom: 5px;
+        }
+
+        .location-link {
+            display: inline-block;
+            margin-top: 10px;
+            background-color: var(--color-accent);
+            color: var(--color-light);
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .location-link:hover {
+            background-color: var(--color-accent-2);
+            transform: scale(1.05);
+        }
+
+        /* Actividades divertidas */
+        .activities {
+            padding: 60px 0;
+            text-align: center;
+            background-color: var(--color-light);
+        }
+
+        .activities h2 {
+            font-size: 2.5rem;
+            color: var(--color-secondary);
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .activities-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .activity-card {
+            width: 280px;
+            background-color: var(--color-primary);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .activity-image {
+            height: 160px;
+            background-color: var(--color-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .activity-image img {
+            max-width: 140px;
+            max-height: 140px;
+            object-fit: contain;
+        }
+
+        .activity-info {
+            padding: 20px;
+        }
+
+        .activity-info h3 {
+            color: var(--color-accent);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .activity-info p {
+            color: var(--color-text);
+            font-size: 1rem;
+        }
+
+        .activity-stripe {
+            height: 10px;
+            background-color: var(--color-accent);
+            position: absolute;
+            top: 160px;
+            left: 0;
+            right: 0;
+            z-index: 1;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--color-primary);
+            color: var(--color-light);
+            text-align: center;
+            padding: 30px 0;
+            border-top: 10px solid var(--color-accent);
+        }
+
+        .footer-content p {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--color-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--color-secondary);
+        }
+
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+
+        /* Elementos decorativos de la Abeja Maya */
+        .maya-decoration {
+            position: absolute;
+            top: 60px;
+            left: 80px;
+            width: 120px;
+            height: 100px;
+            background-color: var(--color-primary);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            z-index: 10;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .maya-face {
+            position: absolute;
+            width: 80px;
+            height: 60px;
+            background-color: var(--color-light);
+            border-radius: 50%;
+            top: 15px;
+            left: 20px;
+        }
+
+        .maya-eye {
+            position: absolute;
+            width: 15px;
+            height: 20px;
+            background-color: var(--color-accent);
+            border-radius: 50%;
+            top: 15px;
+        }
+
+        .maya-eye.left {
+            left: 20px;
+        }
+
+        .maya-eye.right {
+            right: 20px;
+        }
+
+        .maya-smile {
+            position: absolute;
+            width: 30px;
+            height: 10px;
+            border-radius: 0 0 15px 15px;
+            border: 3px solid var(--color-accent);
+            border-top: none;
+            bottom: 15px;
+            left: 25px;
+        }
+
+        .maya-antenna {
+            position: absolute;
+            width: 5px;
+            height: 30px;
+            background-color: var(--color-accent);
+            top: -25px;
+        }
+
+        .maya-antenna.left {
+            left: 30px;
+            transform: rotate(-15deg);
+        }
+
+        .maya-antenna.right {
+            right: 30px;
+            transform: rotate(15deg);
+        }
+
+        .maya-antenna::before {
+            content: "";
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: var(--color-accent);
+            border-radius: 50%;
+            top: -6px;
+            left: -3.5px;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .timer {
+                flex-wrap: wrap;
+            }
+
+            .timer-box {
+                min-width: 80px;
+            }
+
+            .timer-box .number {
+                font-size: 2rem;
+            }
+
+            .honeycomb-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .activities-container {
+                justify-content: center;
+            }
+
+            .maya-decoration {
+                left: 30px;
+                top: 40px;
+                transform: scale(0.8);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Audio de fondo -->
+    <audio id="backgroundMusic" autoplay loop>
+        <source src="ma.mp3" type="audio/mp3">
+        Tu navegador no soporta audio HTML5.
+    </audio>
+    <!-- Header con nombre y tema de Abeja Maya -->
+    <header>
+        <div id="bees"></div>
+        <div class="header-content">
+            <h1>¡Maya Valeria Cumple 1 Añito!</h1>
+            <p class="subtitle">¡Ven y disfruta con nosotros en su dulce fiesta de Mayita!</p>
+        </div>
+        <div class="maya-decoration">
+            <div class="maya-face">
+                <div class="maya-eye left"></div>
+                <div class="maya-eye right"></div>
+                <div class="maya-smile"></div>
+            </div>
+            <div class="maya-antenna left"></div>
+            <div class="maya-antenna right"></div>
+        </div>
+        <div class="header-img-container">
+            <img class="header-img" src="b.jpg" alt="maya">
+        </div>
+    </header>
+
+    <!-- Sección principal con imagen única -->
+    <section class="main-content">
+        <div class="container">
+            <h2>El Primer Añito de Nuestra Pequeña hijita</h2>
+            <div class="bee-decoration left"></div>
+            <div class="bee-decoration right"></div>
+            <div class="main-image-container">
+                <img class="main-image" src="b.jpg" alt="maya">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contador regresivo temática abeja -->
+    <section class="countdown">
+        <div class="container">
+            <h2>¡Las Abejitas Están Contando los Días!</h2>
+            <div class="honeycomb-background">
+                <div class="timer">
+                    <div class="timer-box">
+                        <div class="number" id="days">00</div>
+                        <div class="label">Días</div>
+                    </div>
+                    <div class="timer-box">
+                        <div class="number" id="hours">00</div>
+                        <div class="label">Horas</div>
+                    </div>
+                    <div class="timer-box">
+                        <div class="number" id="minutes">00</div>
+                        <div class="label">Minutos</div>
+                    </div>
+                    <div class="timer-box">
+                        <div class="number" id="seconds">00</div>
+                        <div class="label">Segundos</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bee-flying left"></div>
+            <div class="bee-flying right"></div>
+        </div>
+    </section>
+
+    <!-- Detalles del evento - temática abeja -->
+    <section class="details">
+        <div class="container">
+            <h2>Detalles de La Colmena de Diversión</h2>
+            <div class="honeycomb-container">
+                <div class="detail-card">
+                    <div class="hexagon-shape"></div>
+                    <div class="card-content">
+
+                        <h3>¿Cuándo sera?</h3>
+                        <p>Lunes, 3 de marzo de 2025</p>
+                        <p>A las 2:30 PM</p>
+                    </div>
+                </div>
+                <div class="detail-card">
+                    <div class="hexagon-shape"></div>
+                    <div class="card-content">
+
+                        <h3>¿Dónde sera la fiesta?</h3>
+                        <p>"Alto Vino tinto, Parada 928"</p>
+
+                        <a href="https://www.google.com/maps/place/16%C2%B028'50.3%22S+68%C2%B008'38.9%22W/@-16.4806336,-68.1466991,17z/data=!3m1!4b1!4m4!3m3!8m2!3d-16.4806336!4d-68.1441242?entry=ttu&g_ep=EgoyMDI1MDIyNi4xIKXMDSoASAFQAw%3D%3D"
+                            target="_blank" class="location-link">Ver en el mapa</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>Con mucho cariño, para Mayita
+                <p>
+                <p>Para más información: 76262908</p>
+
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Generar abejas aleatorias en el header
+        function createBees() {
+            const beesContainer = document.getElementById('bees');
+
+            for (let i = 0; i < 15; i++) {
+                // Crear un contenedor para la abeja
+                const beeContainer = document.createElement('div');
+                beeContainer.classList.add('bee-container');
+
+                // Crear la imagen de la abeja
+                const beeImg = document.createElement('img');
+                beeImg.src = 'bee.png'; // Reemplaza con el nombre de tu imagen
+                beeImg.classList.add('bee-img');
+
+                // Aplicar posición y animación aleatorias
+                beeContainer.style.setProperty('--bee-y', Math.random());
+                beeContainer.style.animationDelay = `${Math.random() * 5}s`;
+                const scale = 0.5 + Math.random() * 0.8;
+                beeContainer.style.transform = `scale(${scale})`;
+
+                // Añadir la imagen al contenedor
+                beeContainer.appendChild(beeImg);
+
+                // Añadir el contenedor al DOM
+                beesContainer.appendChild(beeContainer);
+            }
+        }
+
+        // Animación para las abejas volantes en la sección de cuenta regresiva
+        function setupFlyingBees() {
+            const leftBee = document.querySelector('.bee-flying.left');
+            const rightBee = document.querySelector('.bee-flying.right');
+
+            if (leftBee && rightBee) {
+                // Agregar alas a las abejas voladoras
+                const leftWing = document.createElement('div');
+                leftWing.classList.add('bee-wing');
+                leftBee.appendChild(leftWing);
+
+                const rightWing = document.createElement('div');
+                rightWing.classList.add('bee-wing');
+                rightBee.appendChild(rightWing);
+            }
+        }
+
+        // Configurar el contador regresivo
+        function setupCountdown() {
+            // Fecha del evento (año, mes [0-11], día, hora, minuto)
+            const eventDate = new Date(2025, 2, 3, 14, 30); // 3 de marzo de 2025, 14:30 PM
+
+            function updateTimer() {
+                const now = new Date();
+                const difference = eventDate - now;
+
+                // Si ya pasó la fecha
+                if (difference < 0) {
+                    document.getElementById('days').innerText = '00';
+                    document.getElementById('hours').innerText = '00';
+                    document.getElementById('minutes').innerText = '00';
+                    document.getElementById('seconds').innerText = '00';
+                    return;
+                }
+
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById('days').innerText = days < 10 ? `0${days}` : days;
+                document.getElementById('hours').innerText = hours < 10 ? `0${hours}` : hours;
+                document.getElementById('minutes').innerText = minutes < 10 ? `0${minutes}` : minutes;
+                document.getElementById('seconds').innerText = seconds < 10 ? `0${seconds}` : seconds;
+            }
+
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        }
+
+        // Inicializar todas las funciones cuando se carga la página
+        window.addEventListener('DOMContentLoaded', () => {
+            createBees();
+            setupFlyingBees();
+            setupCountdown(); // Aseguramos que el contador se active
+        });
+    </script>
+    <!-- Controles de audio (opcional) -->
+    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+        <button id="playPauseBtn"
+            style="background-color: #F9D423; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer;">
+            <i id="playPauseIcon" style="color: #000;">▶️</i>
+        </button>
+    </div>
+
+    <script>
+        // Añade este código al final de tu archivo JavaScript existente
+        document.addEventListener('DOMContentLoaded', function () {
+            const audio = document.getElementById('backgroundMusic');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const playPauseIcon = document.getElementById('playPauseIcon');
+
+            // Intenta reproducir automáticamente (puede que no funcione en todos los navegadores)
+            audio.play().catch(e => {
+                console.log('Reproducción automática bloqueada por el navegador');
+            });
+
+            // Actualiza el icono según el estado inicial
+            updateIcon();
+
+            playPauseBtn.addEventListener('click', function () {
+                if (audio.paused) {
+                    audio.play();
+                } else {
+                    audio.pause();
+                }
+                updateIcon();
+            });
+
+            function updateIcon() {
+                playPauseIcon.textContent = audio.paused ? '▶️' : '⏸️';
+            }
+        });
+    </script>
+</body>
+
+</html>
